@@ -1,0 +1,17 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+hotel-availability,com.mindata.hotelavailability.application,SearchService,0,92,0,0,0,24,0,5,0,5
+hotel-availability,com.mindata.hotelavailability.infrastructure.adapter.persistence,SearchPersistenceAdapter,0,64,0,0,0,23,0,5,0,5
+hotel-availability,com.mindata.hotelavailability.infrastructure.adapter.persistence,SearchEntity,0,53,0,0,0,23,0,12,0,12
+hotel-availability,com.mindata.hotelavailability.domain.port.in,GetSearchCountUseCase.SearchCountResult,0,15,0,0,0,6,0,3,0,3
+hotel-availability,com.mindata.hotelavailability.infrastructure.adapter.rest,KafkaSearchPublisher,22,0,0,0,6,0,2,0,2,0
+hotel-availability,com.mindata.hotelavailability.infrastructure.adapter.rest,KafkaSearchConsumer,27,0,0,0,10,0,2,0,2,0
+hotel-availability,com.mindata.hotelavailability.infrastructure.adapter.rest,SearchController,0,59,0,0,0,18,0,3,0,3
+hotel-availability,com.mindata.hotelavailability.infrastructure.config,KafkaConfig,11,0,0,0,5,0,2,0,2,0
+hotel-availability,com.mindata.hotelavailability.infrastructure.exception,ErrorResponse,8,15,0,0,4,6,2,3,2,3
+hotel-availability,com.mindata.hotelavailability.infrastructure.exception,SearchNotFoundException,0,5,0,0,0,2,0,1,0,1
+hotel-availability,com.mindata.hotelavailability.infrastructure.exception,GlobalExceptionHandler,0,16,0,0,0,3,0,2,0,2
+hotel-availability,com.mindata.hotelavailability,HotelAvailabilityApplication,5,3,0,0,2,1,1,1,1,1
+hotel-availability,com.mindata.hotelavailability.domain.model,SearchResponse,3,13,0,0,2,6,1,3,1,3
+hotel-availability,com.mindata.hotelavailability.domain.model,CountResponse,15,21,0,0,8,8,4,4,4,4
+hotel-availability,com.mindata.hotelavailability.domain.model,SearchRequest,0,47,0,2,0,16,0,7,0,6
+hotel-availability,com.mindata.hotelavailability.domain.model,Search,4,61,3,3,0,17,3,8,0,8
