@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CountResponse.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel-availability</a> &gt; <a href="index.source.html" class="el_package">com.mindata.hotelavailability.domain.model</a> &gt; <span class="el_source">CountResponse.java</span></div><h1>CountResponse.java</h1><pre class="source lang-java linenums">package com.mindata.hotelavailability.domain.model;
+
+public class CountResponse {
+
+    private String searchId;
+    private SearchRequest search;
+    private long count;
+
+<span class="nc" id="L9">    public CountResponse() {</span>
+<span class="nc" id="L10">    }</span>
+
+<span class="fc" id="L12">    public CountResponse(String searchId, SearchRequest search, long count) {</span>
+<span class="fc" id="L13">        this.searchId = searchId;</span>
+<span class="fc" id="L14">        this.search = search;</span>
+<span class="fc" id="L15">        this.count = count;</span>
+<span class="fc" id="L16">    }</span>
+
+    public String getSearchId() {
+<span class="fc" id="L19">        return searchId;</span>
+    }
+
+    public void setSearchId(String searchId) {
+<span class="nc" id="L23">        this.searchId = searchId;</span>
+<span class="nc" id="L24">    }</span>
+
+    public SearchRequest getSearch() {
+<span class="fc" id="L27">        return search;</span>
+    }
+
+    public void setSearch(SearchRequest search) {
+<span class="nc" id="L31">        this.search = search;</span>
+<span class="nc" id="L32">    }</span>
+
+    public long getCount() {
+<span class="fc" id="L35">        return count;</span>
+    }
+
+    public void setCount(long count) {
+<span class="nc" id="L39">        this.count = count;</span>
+<span class="nc" id="L40">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

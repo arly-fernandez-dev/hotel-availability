@@ -1,2 +1,8 @@
-C:\Arly\POC\Mindata\hotel-availability\src\test\java\com\mindata\hotelavailability\controller\SearchControllerTest.java
-C:\Arly\POC\Mindata\hotel-availability\src\test\java\com\mindata\hotelavailability\service\SearchServiceTest.java
+C:\Arly\POC\Mindata\hotel-availability\src\test\java\com\mindata\hotelavailability\infrastructure\adapter\rest\SearchControllerTest.java
+C:\Arly\POC\Mindata\hotel-availability\src\test\java\com\mindata\hotelavailability\infrastructure\adapter\persistence\SearchEntityTest.java
+C:\Arly\POC\Mindata\hotel-availability\src\test\java\com\mindata\hotelavailability\domain\SearchTest.java
+C:\Arly\POC\Mindata\hotel-availability\src\test\java\com\mindata\hotelavailability\model\SearchEntityTest.java
+C:\Arly\POC\Mindata\hotel-availability\src\test\java\com\mindata\hotelavailability\infrastructure\adapter\persistence\SearchPersistenceAdapterTest.java
+C:\Arly\POC\Mindata\hotel-availability\src\test\java\com\mindata\hotelavailability\domain\model\DtoTest.java
+C:\Arly\POC\Mindata\hotel-availability\src\test\java\com\mindata\hotelavailability\application\SearchServiceTest.java
+C:\Arly\POC\Mindata\hotel-availability\src\test\java\com\mindata\hotelavailability\infrastructure\exception\GlobalExceptionHandlerTest.java

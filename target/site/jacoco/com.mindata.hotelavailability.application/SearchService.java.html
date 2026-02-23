@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SearchService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel-availability</a> &gt; <a href="index.source.html" class="el_package">com.mindata.hotelavailability.application</a> &gt; <span class="el_source">SearchService.java</span></div><h1>SearchService.java</h1><pre class="source lang-java linenums">package com.mindata.hotelavailability.application;
+
+import com.mindata.hotelavailability.domain.model.Search;
+import com.mindata.hotelavailability.domain.port.in.CreateSearchUseCase;
+import com.mindata.hotelavailability.domain.port.in.GetSearchCountUseCase;
+import com.mindata.hotelavailability.domain.port.out.SearchEventPublisherPort;
+import com.mindata.hotelavailability.domain.port.out.SearchRepositoryPort;
+import com.mindata.hotelavailability.infrastructure.exception.SearchNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class SearchService implements CreateSearchUseCase, GetSearchCountUseCase {
+
+    private final SearchEventPublisherPort eventPublisher;
+    private final SearchRepositoryPort repository;
+
+<span class="fc" id="L22">    public SearchService(SearchEventPublisherPort eventPublisher, SearchRepositoryPort repository) {</span>
+<span class="fc" id="L23">        this.eventPublisher = eventPublisher;</span>
+<span class="fc" id="L24">        this.repository = repository;</span>
+<span class="fc" id="L25">    }</span>
+
+    @Override
+    public String createSearch(String hotelId, String checkin, String checkout, List&lt;Integer&gt; ages) {
+<span class="fc" id="L29">        String searchId = UUID.randomUUID().toString();</span>
+<span class="fc" id="L30">        eventPublisher.publishSearch(searchId, hotelId, checkin, checkout, ages);</span>
+<span class="fc" id="L31">        return searchId;</span>
+    }
+
+    @Override
+    public SearchCountResult getCount(String searchId) {
+<span class="fc" id="L36">        Search search = repository.findById(searchId)</span>
+<span class="fc" id="L37">                .orElseThrow(() -&gt; new SearchNotFoundException(searchId));</span>
+
+<span class="fc" id="L39">        List&lt;Integer&gt; sortedAges = new ArrayList&lt;&gt;(search.getAges());</span>
+<span class="fc" id="L40">        Collections.sort(sortedAges);</span>
+
+<span class="fc" id="L42">        List&lt;Search&gt; similarSearches = repository.findByHotelIdAndCheckinAndCheckout(</span>
+<span class="fc" id="L43">                search.getHotelId(),</span>
+<span class="fc" id="L44">                search.getCheckin(),</span>
+<span class="fc" id="L45">                search.getCheckout()</span>
+        );
+
+<span class="fc" id="L48">        long count = similarSearches.stream()</span>
+<span class="fc" id="L49">                .filter(s -&gt; {</span>
+<span class="fc" id="L50">                    List&lt;Integer&gt; otherAges = new ArrayList&lt;&gt;(s.getAges());</span>
+<span class="fc" id="L51">                    Collections.sort(otherAges);</span>
+<span class="fc" id="L52">                    return sortedAges.equals(otherAges);</span>
+                })
+<span class="fc" id="L54">                .count();</span>
+
+<span class="fc" id="L56">        Search resultSearch = new Search(search.getId(), search.getHotelId(), </span>
+<span class="fc" id="L57">                search.getCheckin(), search.getCheckout(), sortedAges);</span>
+
+<span class="fc" id="L59">        return new SearchCountResult(resultSearch, count);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
