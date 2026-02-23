@@ -4,26 +4,34 @@ REST API for tracking hotel search queries. Built with Spring Boot, Kafka, and M
 
 ## Requirements
 
-- Java 17
+- Java 17 or higher
 - Maven 3.6+
 - Docker and Docker Compose
 
-## Setup
+## Quick Start with Docker
 
-Start the required services (MongoDB and Kafka):
+Build and run everything with Docker:
 
 ```bash
-docker-compose up -d
+docker-compose up --build
 ```
 
-Give Kafka about 30 seconds to initialize properly. Then build and run:
+The API will be available at `http://localhost:8080`
+
+## Local Development
+
+Start only the dependencies:
+
+```bash
+docker-compose up mongodb kafka zookeeper
+```
+
+Then run the app locally:
 
 ```bash
 mvn clean install
 mvn spring-boot:run
 ```
-
-Server runs on port 8080.
 
 ## API Endpoints
 
@@ -68,13 +76,23 @@ Response:
 
 ## Testing
 
-Run the test suite:
+Run tests with coverage:
 
 ```bash
-mvn test
+mvn clean test
 ```
 
-Or use the included Postman collection (`Hotel_Availability_API.postman_collection.json`) for manual testing.
+View coverage report at `target/site/jacoco/index.html`
+
+Or use the Postman collection (`Hotel_Availability_API.postman_collection.json`) for manual testing.
+
+## Architecture
+
+The project follows hexagonal architecture:
+
+- `domain`: Core business logic and ports
+- `application`: Use case implementations
+- `infrastructure`: Adapters for external systems (REST, Kafka, MongoDB)
 
 ## How it works
 

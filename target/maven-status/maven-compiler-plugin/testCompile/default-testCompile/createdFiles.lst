@@ -1,2 +1,8 @@
-com\mindata\hotelavailability\controller\SearchControllerTest.class
-com\mindata\hotelavailability\service\SearchServiceTest.class
+com\mindata\hotelavailability\infrastructure\adapter\rest\SearchControllerTest.class
+com\mindata\hotelavailability\application\SearchServiceTest.class
+com\mindata\hotelavailability\domain\SearchTest.class
+com\mindata\hotelavailability\infrastructure\exception\GlobalExceptionHandlerTest.class
+com\mindata\hotelavailability\domain\model\DtoTest.class
+com\mindata\hotelavailability\infrastructure\adapter\persistence\SearchPersistenceAdapterTest.class
+com\mindata\hotelavailability\infrastructure\adapter\persistence\SearchEntityTest.class
+com\mindata\hotelavailability\model\SearchEntityTest.class

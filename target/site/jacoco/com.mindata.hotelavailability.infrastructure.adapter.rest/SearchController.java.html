@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SearchController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel-availability</a> &gt; <a href="index.source.html" class="el_package">com.mindata.hotelavailability.infrastructure.adapter.rest</a> &gt; <span class="el_source">SearchController.java</span></div><h1>SearchController.java</h1><pre class="source lang-java linenums">package com.mindata.hotelavailability.infrastructure.adapter.rest;
+
+import com.mindata.hotelavailability.domain.port.in.CreateSearchUseCase;
+import com.mindata.hotelavailability.domain.port.in.GetSearchCountUseCase;
+import com.mindata.hotelavailability.domain.model.CountResponse;
+import com.mindata.hotelavailability.domain.model.SearchRequest;
+import com.mindata.hotelavailability.domain.model.SearchResponse;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class SearchController {
+
+    private final CreateSearchUseCase createSearchUseCase;
+    private final GetSearchCountUseCase getSearchCountUseCase;
+
+<span class="fc" id="L18">    public SearchController(CreateSearchUseCase createSearchUseCase, GetSearchCountUseCase getSearchCountUseCase) {</span>
+<span class="fc" id="L19">        this.createSearchUseCase = createSearchUseCase;</span>
+<span class="fc" id="L20">        this.getSearchCountUseCase = getSearchCountUseCase;</span>
+<span class="fc" id="L21">    }</span>
+
+    @PostMapping(&quot;/search&quot;)
+    public ResponseEntity&lt;SearchResponse&gt; search(@Valid @RequestBody SearchRequest request) {
+<span class="fc" id="L25">        String searchId = createSearchUseCase.createSearch(</span>
+<span class="fc" id="L26">                request.getHotelId(),</span>
+<span class="fc" id="L27">                request.getCheckIn(),</span>
+<span class="fc" id="L28">                request.getCheckOut(),</span>
+<span class="fc" id="L29">                request.getAges()</span>
+        );
+<span class="fc" id="L31">        return ResponseEntity.ok(new SearchResponse(searchId));</span>
+    }
+
+    @GetMapping(&quot;/count&quot;)
+    public ResponseEntity&lt;CountResponse&gt; count(@RequestParam String searchId) {
+<span class="fc" id="L36">        GetSearchCountUseCase.SearchCountResult result = getSearchCountUseCase.getCount(searchId);</span>
+        
+<span class="fc" id="L38">        SearchRequest searchRequest = new SearchRequest(</span>
+<span class="fc" id="L39">                result.getSearch().getHotelId(),</span>
+<span class="fc" id="L40">                result.getSearch().getCheckin(),</span>
+<span class="fc" id="L41">                result.getSearch().getCheckout(),</span>
+<span class="fc" id="L42">                result.getSearch().getAges()</span>
+        );
+        
+<span class="fc" id="L45">        CountResponse response = new CountResponse(searchId, searchRequest, result.getCount());</span>
+<span class="fc" id="L46">        return ResponseEntity.ok(response);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
