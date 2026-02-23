@@ -1,0 +1,10 @@
+com\mindata\hotelavailability\dto\CountResponse.class
+com\mindata\hotelavailability\config\KafkaConfig.class
+com\mindata\hotelavailability\HotelAvailabilityApplication.class
+com\mindata\hotelavailability\model\SearchEntity.class
+com\mindata\hotelavailability\dto\SearchRequest.class
+com\mindata\hotelavailability\service\SearchService.class
+com\mindata\hotelavailability\controller\SearchController.class
+com\mindata\hotelavailability\repository\SearchRepository.class
+com\mindata\hotelavailability\consumer\SearchConsumer.class
+com\mindata\hotelavailability\dto\SearchResponse.class
